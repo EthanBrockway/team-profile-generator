@@ -1,10 +1,11 @@
 const Engineer = require("../lib/Engineer")
-it("should return all of the engineer's information", () => {
-  const Engineer = new Engineer("Dave", 1, "email.com", "username", "engineer")
 
-  expect(Engineer.getName()).toBe("Dave")
-  expect(Engineer.getId()).toBe(1)
-  expect(Engineer.getEmail()).toBe("email.com")
-  expect(Engineer.getGithub()).toBe("username")
-  expect(Engineer.getRole()).toBe("engineer")
+it("should return all of the engineer's information", () => {
+  const engineer = new Engineer("Dave", 1, "email.com", "username", "engineer")
+
+  expect(engineer.getName()).toBe("Dave")
+  expect(engineer.getId()).toBe(1)
+  expect(engineer.getEmail()).toBe("email.com")
+  expect(engineer.getGithub()).toBe("https//github.com/username")
+  expect(engineer.getRole()).toBe("Engineer")
 })
