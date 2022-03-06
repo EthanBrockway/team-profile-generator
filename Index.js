@@ -3,6 +3,7 @@ const employees = []
 const Manager = require("./lib/Manager.js")
 const Engineer = require("./lib/Engineer.js")
 const Intern = require("./lib/Intern.js")
+const writeFile = require("./generate-page")
 
 function startPrompt() {
   return inquirer
@@ -121,7 +122,7 @@ function finishPrompt() {
     })
     .then((answer) => {
       if (answer.addEmployee) return employeePrompt()
-      else generatePage(pageTemplate(employees))
+      else writeFile(pageTemplate(employees))
     })
 }
 
