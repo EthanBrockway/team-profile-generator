@@ -15,7 +15,11 @@ function startPrompt() {
     })
     .then((answer) => {
       if (answer.type === "Engineer") {
-        engineerPrompt()
+        engineerPrompt().then((object) => {
+          let { name, id, email, username } = object
+          employees.push(new Engineer(name, id, email, username))
+          return finishPrompt()
+        })
       } else {
         internPrompt().then((object) => {
           let { name, ID, email, school } = object
