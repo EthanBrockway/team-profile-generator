@@ -1,8 +1,8 @@
 const inquirer = require("inquirer")
 const employees = []
-const Employee = require("./lib/Employee.js")
 const Manager = require("./lib/Manager.js")
 const Engineer = require("./lib/Engineer.js")
+const Intern = require("./lib/Intern.js")
 
 function startPrompt() {
   inquirer
@@ -56,26 +56,41 @@ function internPrompt() {
 }
 
 function engineerPrompt() {
-  return inquirer.prompt({
-    type: "input",
-    name: "name",
-    message: "What is the engineer's name?",
-},
-{
-    type: "input",
-    name: "ID",
-    message: "What is the engineer's ID?",
-},{
-    type: "input",
-    name: "email",
-    message: "What is the engineer's email?",
-},{
-    type: "input",
-    name: "github",
-    message: "What is the engineer's github?",
-})
+  return inquirer.prompt(
+    {
+      type: "input",
+      name: "name",
+      message: "What is the engineer's name?",
+    },
+    {
+      type: "input",
+      name: "ID",
+      message: "What is the engineer's ID?",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is the engineer's email?",
+    },
+    {
+      type: "input",
+      name: "github",
+      message: "What is the engineer's github username?",
+    }
+  )
 }
 
-)
+function finishPrompt() {
+  inquirer
+    .prompt({
+      type: "confirm",
+      name: "addEmployee",
+      message: "Would you like to add another employee?",
+      default: false,
+    })
+    .then((answer) => {
+      if (answer.addEmployee) return startPrompt()
+    })
 }
+
 startPrompt()
