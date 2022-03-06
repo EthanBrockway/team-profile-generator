@@ -23,14 +23,37 @@ function startPrompt() {
       } else {
         internPrompt().then((object) => {
           let { name, ID, email, school } = object
-          memberList.push(new Intern(name, ID, email, school))
+          employees.push(new Intern(name, ID, email, school))
           return finishPrompt()
         })
       }
     })
 }
 
-function internPrompt() {}
+function internPrompt() {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is the intern's name?",
+    },
+    {
+      type: "input",
+      name: "ID",
+      message: "What is the intern's ID?",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is the intern's email?",
+    },
+    {
+      type: "input",
+      name: "school",
+      message: "Where did the intern graduate?",
+    },
+  ])
+}
 
 function engineerPrompt() {}
 startPrompt()
