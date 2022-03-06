@@ -121,6 +121,7 @@ function finishPrompt() {
     })
     .then((answer) => {
       if (answer.addEmployee) return employeePrompt()
+      else generatePage(pageTemplate(employees))
     })
 }
 
