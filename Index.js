@@ -5,6 +5,39 @@ const Engineer = require("./lib/Engineer.js")
 const Intern = require("./lib/Intern.js")
 
 function startPrompt() {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the manager's name?",
+      },
+      {
+        type: "input",
+        name: "ID",
+        message: "What is the manager's ID?",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "What is the manager's email?",
+      },
+      {
+        type: "input",
+        name: "officeNumber",
+        message: "What is the manager's office number?",
+      },
+    ])
+
+    .then((object) => {
+      let { name, ID, email, officeNumber } = object
+      let manager = new Manager(name, ID, email, officeNumber)
+      employees.push(manager)
+      employeePrompt()
+    })
+}
+
+function employeePrompt() {
   inquirer
     .prompt({
       type: "list",
@@ -87,7 +120,7 @@ function finishPrompt() {
       default: false,
     })
     .then((answer) => {
-      if (answer.addEmployee) return startPrompt()
+      if (answer.addEmployee) return employeePrompt()
     })
 }
 
