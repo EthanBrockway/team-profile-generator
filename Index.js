@@ -15,11 +15,7 @@ function startPrompt() {
     })
     .then((answer) => {
       if (answer.type === "Engineer") {
-        engineerPrompt().then((object) => {
-          let { name, ID, email, github } = object
-          employees.push(new Engineer(name, ID, email, github))
-          return finishPrompt()
-        })
+        engineerPrompt()
       } else {
         internPrompt().then((object) => {
           let { name, ID, email, school } = object
@@ -29,7 +25,30 @@ function startPrompt() {
       }
     })
 }
-
+const engineerPrompt = () => {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is the engineer's name?",
+    },
+    {
+      type: "input",
+      name: "ID",
+      message: "What is the engineer's ID?",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is the engineer's email?",
+    },
+    {
+      type: "input",
+      name: "github",
+      message: "What is the engineer's github username?",
+    },
+  ])
+}
 function internPrompt() {
   return inquirer.prompt([
     {
@@ -53,31 +72,6 @@ function internPrompt() {
       message: "Where did the intern graduate?",
     },
   ])
-}
-
-function engineerPrompt() {
-  return inquirer.prompt(
-    {
-      type: "input",
-      name: "name",
-      message: "What is the engineer's name?",
-    },
-    {
-      type: "input",
-      name: "ID",
-      message: "What is the engineer's ID?",
-    },
-    {
-      type: "input",
-      name: "email",
-      message: "What is the engineer's email?",
-    },
-    {
-      type: "input",
-      name: "github",
-      message: "What is the engineer's github username?",
-    }
-  )
 }
 
 function finishPrompt() {
