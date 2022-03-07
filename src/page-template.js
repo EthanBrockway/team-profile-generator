@@ -18,7 +18,7 @@ const generateEmployees = (employees) => {
       })
       .join("")}
     ${employees
-      .filter(({ username }) => username !== undefined)
+      .filter(({ github }) => github !== undefined)
       .map((engineer) => {
         return `<div class="card">
             <div class="card-header">
