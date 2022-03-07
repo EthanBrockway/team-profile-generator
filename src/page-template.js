@@ -27,7 +27,7 @@ const generateEmployees = (employees) => {
             <ul>
                 <li>ID: ${engineer.getId()}</li> 
                 <li>Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li> 
-                <li>GitHub: <a href=${engineer.getGithub()}>Link</a></li>
+                <li>GitHub: <a href="https://github.com/${engineer.getGithub()}">Link</a></li>
                 </ul>
                 </div>
                 </div>
