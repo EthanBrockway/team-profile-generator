@@ -1,9 +1,10 @@
-const inquirer = require("inquirer")
-const employees = []
-const Manager = require("./lib/Manager.js")
-const Engineer = require("./lib/Engineer.js")
-const Intern = require("./lib/Intern.js")
-const writeFile = require("./generate-page")
+const inquirer = require("inquirer");
+const employees = [];
+const Manager = require("./lib/Manager.js");
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
+const writeFile = require("./generate-page");
+const pageTemplate = require("./src/page-template");
 
 function startPrompt() {
   return inquirer
@@ -31,11 +32,11 @@ function startPrompt() {
     ])
 
     .then((object) => {
-      let { name, ID, email, officeNumber } = object
-      let manager = new Manager(name, ID, email, officeNumber)
-      employees.push(manager)
-      employeePrompt()
-    })
+      let { name, ID, email, officeNumber } = object;
+      let manager = new Manager(name, ID, email, officeNumber);
+      employees.push(manager);
+      employeePrompt();
+    });
 }
 
 function employeePrompt() {
@@ -50,18 +51,18 @@ function employeePrompt() {
     .then((answer) => {
       if (answer.type === "Engineer") {
         engineerPrompt().then((object) => {
-          let { name, id, email, username } = object
-          employees.push(new Engineer(name, id, email, username))
-          return finishPrompt()
-        })
+          let { name, id, email, username } = object;
+          employees.push(new Engineer(name, id, email, username));
+          return finishPrompt();
+        });
       } else {
         internPrompt().then((object) => {
-          let { name, ID, email, school } = object
-          employees.push(new Intern(name, ID, email, school))
-          return finishPrompt()
-        })
+          let { name, ID, email, school } = object;
+          employees.push(new Intern(name, ID, email, school));
+          return finishPrompt();
+        });
       }
-    })
+    });
 }
 const engineerPrompt = () => {
   return inquirer.prompt([
@@ -85,8 +86,8 @@ const engineerPrompt = () => {
       name: "github",
       message: "What is the engineer's github username?",
     },
-  ])
-}
+  ]);
+};
 function internPrompt() {
   return inquirer.prompt([
     {
@@ -109,7 +110,7 @@ function internPrompt() {
       name: "school",
       message: "Where did the intern graduate?",
     },
-  ])
+  ]);
 }
 
 function finishPrompt() {
@@ -121,9 +122,9 @@ function finishPrompt() {
       default: false,
     })
     .then((answer) => {
-      if (answer.addEmployee) return employeePrompt()
-      else writeFile(pageTemplate(employees))
-    })
+      if (answer.addEmployee) return employeePrompt();
+      else writeFile(pageTemplate(employees));
+    });
 }
 
-startPrompt()
+startPrompt();
