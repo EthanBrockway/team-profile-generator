@@ -67,12 +67,11 @@ module.exports = (employees) => {
     </head>
     <body>
    <div class=header>
-       <h1>My Team</h1>
+       <h1>The Dream Team</h1>
    </div>
    <div class="container">
    ${generateEmployees(employees)}
-         </div>
-    <script src="https://kit.fontawesome.com/257de25400.js" crossorigin="anonymous"></script>         
+         </div> 
     </body>
     </html>`;
 };
