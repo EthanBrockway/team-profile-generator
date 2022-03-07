@@ -18,7 +18,7 @@ const generateEmployees = (employees) => {
       })
       .join("")}
     ${employees
-      .filter(({ github }) => github !== undefined)
+      .filter(({ username }) => username !== undefined)
       .map((engineer) => {
         return `<div class="card">
             <div class="card-header">
@@ -27,7 +27,7 @@ const generateEmployees = (employees) => {
             <ul>
                 <li>ID: ${engineer.getId()}</li> 
                 <li>Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li> 
-                <li>GitHub: <a href=${engineer.getGithub()} target="_blank">GitHub</a></li>
+                <li>GitHub: <a href=${engineer.getGithub()}>Link</a></li>
                 </ul>
                 </div>
                 </div>
