@@ -1,5 +1,3 @@
-# Professional README generator
-
 # Team profile generator
 
 ## Description
